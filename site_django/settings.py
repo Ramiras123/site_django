@@ -122,6 +122,19 @@ STATIC_URL = 'static/'
 # https://django.fun/ru/docs/django/4.1/ref/settings/#static-root
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+# https://django.fun/ru/docs/django/4.1/ref/settings/#staticfiles-finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+# media files
+# https://django.fun/ru/docs/django/4.1/ref/settings/#media-root
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# https://django.fun/ru/docs/django/4.1/ref/settings/#media-url
+MEDIA_URL = 'media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
