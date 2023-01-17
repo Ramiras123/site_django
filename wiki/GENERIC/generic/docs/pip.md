@@ -1,21 +1,84 @@
-## Настройка dotenv
+Установка библиотек
 
-[dotenv](https://pypi.org/project/python-dotenv/)
+```pip install -r requirements.txt```
 
-`pip install python-dotenv`
+Все библиотеки проекта
 
-```python
-
-
-from pathlib import Path
-import os
-from dotenv import load_dotenv
-from django.contrib.messages import constants as messages
-
-# Loading ENV
-env_path = Path('.') / '.env'
-
-#env_path = '.test.env'
-load_dotenv(dotenv_path=env_path)
-```
-
+~~~
+asgiref==3.6.0
+certifi==2022.12.7
+cffi==1.15.1
+channels==4.0.0
+charset-normalizer==3.0.1
+cryptography==39.0.0
+defusedxml==0.7.1
+Django==4.1.5
+django-allauth==0.52.0
+django-braces==1.15.0
+django-ckeditor==6.5.1
+django-cleanup==6.0.0
+django-crispy-forms==1.14.0
+django-js-asset==2.0.0
+oauthlib==3.2.2
+Pillow==9.4.0
+pycparser==2.21
+PyJWT==2.6.0
+python-dotenv==0.21.0
+python3-openid==3.2.0
+requests==2.28.2
+requests-oauthlib==1.3.1
+sqlparse==0.4.3
+tzdata==2022.7
+urllib3==1.26.14
+asgiref==3.6.0
+bracex==2.3.post1
+certifi==2022.12.7
+cffi==1.15.1
+channels==4.0.0
+charset-normalizer==3.0.1
+click==8.1.3
+colorama==0.4.6
+cryptography==39.0.0
+defusedxml==0.7.1
+Django==4.1.5
+django-allauth==0.52.0
+django-braces==1.15.0
+django-ckeditor==6.5.1
+django-cleanup==6.0.0
+django-crispy-forms==1.14.0
+django-js-asset==2.0.0
+ghp-import==2.1.0
+idna==3.4
+importlib-metadata==6.0.0
+Jinja2==3.1.2
+Markdown==3.3.7
+MarkupSafe==2.1.1
+mergedeep==1.3.4
+mkdocs==1.4.2
+mkdocs-awesome-pages-plugin==2.8.0
+mkdocs-material==9.0.5
+mkdocs-material-extensions==1.1.1
+natsort==8.2.0
+oauthlib==3.2.2
+packaging==23.0
+Pillow==9.4.0
+pycparser==2.21
+Pygments==2.14.0
+PyJWT==2.6.0
+pymdown-extensions==9.9.1
+python-dateutil==2.8.2
+python-dotenv==0.21.0
+python3-openid==3.2.0
+PyYAML==6.0
+pyyaml_env_tag==0.1
+regex==2022.10.31
+requests==2.28.2
+requests-oauthlib==1.3.1
+six==1.16.0
+sqlparse==0.4.3
+tzdata==2022.7
+urllib3==1.26.14
+watchdog==2.2.1
+wcmatch==8.4.1
+zipp==3.11.0
+~~~

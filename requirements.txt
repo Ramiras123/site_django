@@ -12,7 +12,6 @@ django-ckeditor==6.5.1
 django-cleanup==6.0.0
 django-crispy-forms==1.14.0
 django-js-asset==2.0.0
-idna==3.4
 oauthlib==3.2.2
 Pillow==9.4.0
 pycparser==2.21
