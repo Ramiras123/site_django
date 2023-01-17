@@ -140,4 +140,4 @@ dmypy.json
 .pyre/
 
 # ignore problem file
-wiki/GENERIC/generic/wiki/GENERIC/generic/build/assets/javascripts/lunr/wordcut.js
+/wiki/GENERIC/generic/wiki/GENERIC/generic/build/assets/javascripts/lunr/wordcut.js
