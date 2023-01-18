@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
+
+# Load Env file
+env_path = Path('.') / '.env'
+
+# Env loading
+load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3k8115&sx#l%5+1kjq^z$_nz^w!&9$=o!$g6k+g6a4pux*tv!$'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -30,6 +37,8 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+# https://github.com/un1t/django-cleanup
+# crispy_forms для красивых форм
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +47,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.humanize',
+    # my apps
+    'blog.apps.BlogConfig',
+
+    # need imports
+    'django_cleanup.apps.CleanupConfig',
+    'crispy_forms',
+    'ckeditor',
+    'debug_toolbar',
+  #  'channels',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', # django_debug_toolbar
 ]
 
 ROOT_URLCONF = 'site_django.urls'
@@ -94,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation .CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
@@ -139,3 +169,57 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Усовершенствованное отображение форм Bootstrap 4 с помощью Django Crispy Forms
+# https://django.fun/ru/articles/tutorials/usovershenstvovannoe-otobrazhenie-form-bootstrap-4-s-pomoshyu-django-crispy-forms/
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+#django-ckeditor
+# https://django-ckeditor.readthedocs.io/en/latest/
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 300,
+    },
+}
+
+# allauth
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+
+#django_debug_toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+#channels - для асинхронности
+
+'''
+ASGI_APPLICATION = "site_django.routing.application"
+
+CHANNEL_LAYERS = {
+    "default":{
+        "BACKEND":"channels.layers.InMemoryChannelLayer"
+    },
+} 
+'''
