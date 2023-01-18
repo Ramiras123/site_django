@@ -53,13 +53,13 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
 
     # need imports
-    'django_cleanup.apps.CleanupConfig',
-    'crispy_forms',
-    'ckeditor',
-    'debug_toolbar',
+    'django_cleanup.apps.CleanupConfig', # automatically deletes files for FileField, ImageField and subclasses
+    'crispy_forms', # для форм
+    'ckeditor', # для полей редактирования
+    'debug_toolbar', # для откладки
   #  'channels',
 
-    #allauth
+    #allauth для авторизации в том числе через соц. сети
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -175,7 +175,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-#django-ckeditor
+#django-ckeditor для полей редактирования
 # https://django-ckeditor.readthedocs.io/en/latest/
 CKEDITOR_CONFIGS = {
     'default': {
@@ -185,7 +185,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-# allauth
+# allauth для настройки авторизации через разные системы
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -207,13 +207,12 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-#django_debug_toolbar
+#django_debug_toolbar для дебага проекта
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
 #channels - для асинхронности
-
 '''
 ASGI_APPLICATION = "site_django.routing.application"
 
@@ -223,3 +222,22 @@ CHANNEL_LAYERS = {
     },
 } 
 '''
+
+#email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
+
+# GOOGLE_RECAPTCHA
+GOOGLE_RECAPTCHA_SECRET_KEY = os.getenv('GOOGLE_RECAPTCHA_SECRET_KEY')
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+}
