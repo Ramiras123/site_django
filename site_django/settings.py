@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms', # для форм
     'ckeditor', # для полей редактирования
     'debug_toolbar', # для откладки
+    'django_extensions', # для подключения юпитера
   #  'channels',
 
     #allauth для авторизации в том числе через соц. сети
@@ -135,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -241,3 +242,6 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
 }
+
+# в производстве убрать
+os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
