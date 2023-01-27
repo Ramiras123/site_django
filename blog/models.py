@@ -13,7 +13,6 @@ class Post(models.Model):
 
     title = models.CharField(max_length=200, db_index=True)
     content = RichTextField(max_length=2000, blank=True, null=True)
-   # content = models.TextField(max_length=2000, blank=True, null=True)
     date_created = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
