@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 
 class UserPostListView(ListView):
     model = Post
-    context_object_name = 'post_list'
+    context_object_name = 'posts_list'
+    template_name = 'blog/user_posts.html'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
