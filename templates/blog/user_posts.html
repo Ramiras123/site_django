@@ -7,7 +7,7 @@
             <div class="col-md-8 col-xl-6 text-center mx-auto">
                 <div class="card">
                     <div class="card-body p-4">
-                        <h2>Heading</h2>
+                        <h2>{{ author_posts }} Количество записей {{ posts_list.count }}</h2>
                         <p>Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                             <div class="d-flex">
                                 <p class="text-primary mb-0">{{ post.date_created|date:"F d Y" }}</p>
                                 <div style="margin-right: -60px;margin-left: 13px;">
-                                    <p class="fw-bold mb-0"><a href="#">{{post.author}}</a></p>
+                                    <p class="fw-bold mb-0"><a href="#">link posts</a></p>
                                 </div>
                             </div>
                         </div>
