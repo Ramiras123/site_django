@@ -3,10 +3,34 @@
         Post
     {% endblock %}
     {% block content_blog %}
-        <ul>
-            {% for post in posts_list %}
-                <li>{{ post.title }} - {{ post.author }}/ {{ post.date_created }}</li>
-            {% endfor %}
-        </ul>
+        <div class="row mb-5">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h2>Heading</h2>
+                        <p>Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for post in posts_list %}
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.content|safe }}</p>
+                            <div class="d-flex">
+                                <p class="text-primary mb-0">{{ post.date_created|date:"F d Y" }}</p>
+                                <div style="margin-right: -60px;margin-left: 13px;">
+                                    <p class="fw-bold mb-0"><a href="#">{{post.author}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
 
     {% endblock %}
+
