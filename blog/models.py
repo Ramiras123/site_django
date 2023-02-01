@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
-
+    """Модель для создания постов"""
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
@@ -17,11 +17,17 @@ class Post(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField()
-    likes = models.ManyToManyField(User, related_name='post_comment', blank=True)
-    reply = models.ForeignKey('self', null=True, related_name='reply_okey', on_delete=models.CASCADE)
+    likes_post = models.ManyToManyField(User, related_name='post_likes', blank=True,
+                                        verbose_name='Лайки')
+  #  reply = models.ForeignKey('self', null=True, related_name='reply_okey', on_delete=models.CASCADE)
+    saves_posts = models.ManyToManyField(User, related_name="blog_posts_save", blank=True,
+                                         verbose_name='Сохранённые посты пользователя')
 
-    def total_likes(self):
-        return self.likes.count()
+    def total_likes_post(self):
+        return self.likes_post.count()
+
+    def total_saves_posts(self):
+        return self.saves_posts.count()
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})

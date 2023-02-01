@@ -178,16 +178,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Усовершенствованное отображение форм Bootstrap 4 с помощью Django Crispy Forms
 # https://django.fun/ru/articles/tutorials/usovershenstvovannoe-otobrazhenie-form-bootstrap-4-s-pomoshyu-django-crispy-forms/
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #django-ckeditor для полей редактирования
 # https://django-ckeditor.readthedocs.io/en/latest/
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': 300,
-    },
+        'width': 'auto',
+    }
 }
 
 # allauth для настройки авторизации через разные системы
