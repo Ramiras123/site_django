@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+    {% block title %}
+       {{ post_detail.title }}
+    {% endblock %}
+    {% block content_blog %}
+        {% if post_detail %}
+                <div class="row mb-5">
+                    <div class="col-md-8 col-xl-6 text-center mx-auto">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">{{ post_detail.title }}</h4>
+                                <p class="card-text">{{ post_detail.content|safe }}</p>
+                                <div class="d-flex">
+                                    <p class="text-primary mb-0">{{ post_detail.date_created|date:"F d Y" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row mb-5">
+                    <div class="col-md-8 col-xl-6 text-center mx-auto">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title">Записи нет</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+    {% endblock %}
+

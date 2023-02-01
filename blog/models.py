@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 
 class Post(models.Model):
@@ -19,7 +20,6 @@ class Post(models.Model):
     slug = models.SlugField()
     likes_post = models.ManyToManyField(User, related_name='post_likes', blank=True,
                                         verbose_name='Лайки')
-  #  reply = models.ForeignKey('self', null=True, related_name='reply_okey', on_delete=models.CASCADE)
     saves_posts = models.ManyToManyField(User, related_name="blog_posts_save", blank=True,
                                          verbose_name='Сохранённые посты пользователя')
 
@@ -29,8 +29,14 @@ class Post(models.Model):
     def total_saves_posts(self):
         return self.saves_posts.count()
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('blog:post-detail', kwargs={'slug': self.slug,'pk': self.pk})
 
     def __str__(self):
         return self.title
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView
 from blog.models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -26,3 +27,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class PostDetailView(DetailView):
+    """Страница  детали записи"""
+    model = Post
+    context_object_name = 'post_detail'
