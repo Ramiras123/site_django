@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from ckeditor.fields import RichTextField
-from django.utils.text import slugify
+from pytils.translit import slugify
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class Post(models.Model):
@@ -29,14 +31,18 @@ class Post(models.Model):
     def total_saves_posts(self):
         return self.saves_posts.count()
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
+#    def save(self, *args, **kwargs):
+  #      self.slug = slugify(self.title)
+   #     super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('blog:post-detail', kwargs={'slug': self.slug,'pk': self.pk})
+        return reverse('blog:post-detail', kwargs={'slug': self.slug, 'pk': self.pk})
 
     def __str__(self):
         return self.title
 
+
+@receiver(pre_save, sender=Post)
+def prepopulated_slug(sender, instance, **kwargs):
+    instance.slug = slugify(instance.title)
 
