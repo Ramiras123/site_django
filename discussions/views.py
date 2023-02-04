@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from discussions.forms import DiscussionCreateForm
 from django.shortcuts import render
+from django.contrib import messages
 
 
 class UserDiscussionsListView(ListView):
@@ -37,6 +38,7 @@ def discussion_create(request):
             new_disc = form.save(commit=False)
             new_disc.author = request.user
             new_disc.save()
+            messages.success(request, 'Пост успешно залит')
             return redirect(new_disc.get_absolute_url())
     else:
         form = DiscussionCreateForm()

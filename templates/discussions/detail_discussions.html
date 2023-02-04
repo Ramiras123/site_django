@@ -4,6 +4,16 @@
     {% endblock %}
     {% block content_blog %}
         {% if discus_detail %}
+                {% if messages %}
+                            {% if user.is_authenticated %}
+                                {% for message in messages %}
+                                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                        {{ user }} - {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                            {% endif %}
+                {% endif %}
                 <div class="row mb-5">
                     <div class="col-md-8 col-xl-6 text-center mx-auto">
                         <div class="card">
