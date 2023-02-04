@@ -23,7 +23,7 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
-    path('discussion', include('discussions.urls', namespace='discussion')),
+    path('discussion/', include('discussions.urls', namespace='discussion')),
     #path('accounts/', include('allauth.urls')),
     # path('register/', user_views.register, name='register'),
     # path('profile/', user_views.profile, name='profile'),
