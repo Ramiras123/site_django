@@ -51,16 +51,17 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # my apps
     'blog.apps.BlogConfig',
+    'discussions',
 
     # need imports
-    'django_cleanup.apps.CleanupConfig', # automatically deletes files for FileField, ImageField and subclasses
-    'crispy_forms', # для форм
-    'ckeditor', # для полей редактирования
-    'debug_toolbar', # для откладки
-    'django_extensions', # для подключения юпитера
-  #  'channels',
+    'django_cleanup.apps.CleanupConfig',  # automatically deletes files for FileField, ImageField and subclasses
+    'crispy_forms',  # для форм
+    'ckeditor',  # для полей редактирования
+    'debug_toolbar',  # для откладки
+    'django_extensions',  # для подключения юпитера
+    #  'channels',
 
-    #allauth для авторизации в том числе через соц. сети
+    #  allauth для авторизации в том числе через соц. сети
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
