@@ -31,10 +31,6 @@ class Post(models.Model):
     def total_saves_posts(self):
         return self.saves_posts.count()
 
-#    def save(self, *args, **kwargs):
-  #      self.slug = slugify(self.title)
-   #     super(Post, self).save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('blog:post-detail', kwargs={'slug': self.slug, 'pk': self.pk})
 

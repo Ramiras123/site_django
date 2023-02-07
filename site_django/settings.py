@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # my apps
     'blog.apps.BlogConfig',
     'discussions',
+    'forms_app',
 
     # need imports
     'django_cleanup.apps.CleanupConfig',  # automatically deletes files for FileField, ImageField and subclasses
