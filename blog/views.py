@@ -11,10 +11,10 @@ class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data()
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        context['author_posts'] = get_object_or_404(User, username=self.kwargs.get('username'))
+        context['author_posts'] = user
         context['posts_list'] = Post.objects.filter(author=user).order_by('-date_created')
         return context
 

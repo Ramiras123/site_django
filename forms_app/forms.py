@@ -1,5 +1,7 @@
 from django import forms
-import datetime
+from datetime import date, timedelta
+
+from django.forms import DateInput
 
 
 class ContactForm(forms.Form):
@@ -7,9 +9,12 @@ class ContactForm(forms.Form):
     message = forms.CharField(max_length=500)
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
-    date_creation = forms.DateField(help_text='Заполнить форму не позднее 1 недели')
+    date_creation = forms.DateField(initial=date.today,
+                                    required=False)
 
     def clean_date_creation(self):
-         data = self.cleaned_data['date_creation']
-         if data < datetime.date.today():
-             raise forms.ValidationError('Форма не действительная')
+        date_new = self.cleaned_data['date_creation']
+        if not date_new:
+            raise forms.ValidationError('Формы нет')
+        if date_new < date.today():
+            raise forms.ValidationError('Форма не действительная')
