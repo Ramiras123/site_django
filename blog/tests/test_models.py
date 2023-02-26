@@ -17,4 +17,4 @@ class PostTestCase(TestCase):
         self.assertEqual(model.content, '134')
         self.assertTrue(model.date_created)
         self.assertTrue(model.date_updated)
-        self.assertEqual(model.slug, 'slug_test')
+        self.assertEqual(model.slug, '13')

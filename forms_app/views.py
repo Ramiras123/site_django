@@ -23,7 +23,8 @@ def contact_send(request):
                 send_mail(subject, message, sender, recipients)
             except BadHeaderError:
                 return HttpResponse('Что то пошло не так')
-            return redirect('form:success')
+           # return redirect('form:success')
+            messages.success('Все получилось')
         else:
             messages.error(request, "error")
     return render(request, 'forms_app/email.html', {'form': form})
