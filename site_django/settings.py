@@ -253,3 +253,6 @@ MESSAGE_TAGS = {
 
 # в производстве убрать
 os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
+
+LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'index-home'

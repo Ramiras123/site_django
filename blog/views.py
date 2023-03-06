@@ -1,9 +1,16 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from blog.models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+def index(request):
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'blog/index.html', context)
 
 
 class UserPostListView(ListView):

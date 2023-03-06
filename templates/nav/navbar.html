@@ -25,8 +25,16 @@
                 </li>
             </ul>
             <ul class="navbar-nav me-auto">
-            <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Button</button><button class="btn btn-primary" type="button">Button</button></div>
+            {% if user.is_authenticated  %}
+                <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Профиль</button><button class="btn btn-primary" type="button">Выйти</button></div>
+                {% else %}
+                <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Логин</button><button class="btn btn-primary" type="button">Регистрация</button></div>
+            {% endif %}
         </div>
-        <div class="d-none d-md-block"><a class="btn btn-light me-2" role="button" href="#">Логин</a><a class="btn btn-primary" role="button" href="#">Регистрация</a></div>
+        {% if user.is_authenticated  %}
+            <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Профиль</button><button class="btn btn-primary" type="button">Выйти</button></div>
+            {% else %}
+             <div class="d-none d-md-block"><a class="btn btn-light me-2" role="button" href="#">Логин</a><a class="btn btn-primary" role="button" href="#">Регистрация</a></div>
+        {% endif %}
     </div>
 </nav>
