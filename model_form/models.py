@@ -19,3 +19,6 @@ class Author(models.Model):
 class Book(models.Model):
     name = models.CharField(max_length=100)
     author = models.ManyToManyField(Author)
+
+    def get_author(self):
+        return '\n'.join([p.name for p in self.author.all()])
