@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content_blog %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="text-center">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h4>Удалить пост {{ object.title }}</h4>
+                        <button class="btn btn-success" type="submit">Удалить</button>
+                        <a  class="btn btn-success"  href="{% url 'blog:post-detail' object.id object.slug %}">Не удалять.</a>
+                    </form>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

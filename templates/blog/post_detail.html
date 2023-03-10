@@ -12,6 +12,10 @@
                                 <p class="card-text">{{ post_detail.content|safe }}</p>
                                 <div class="d-flex">
                                     <p class="text-primary mb-0">{{ post_detail.date_created|date:"F d Y" }}</p>
+                                    {% if post_detail.author == user %}
+                                        <p><a href="{% url 'blog:post-delete' post_detail.pk %}">Delete</a></p>
+                                        <p><a href="{% url 'blog:post-update' post_detail.pk %}">Update</a></p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

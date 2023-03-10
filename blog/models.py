@@ -42,3 +42,20 @@ class Post(models.Model):
 def prepopulated_slug(sender, instance, **kwargs):
     instance.slug = slugify(instance.title)
 
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments_blog', on_delete=models.CASCADE)
+    name_author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField(max_length=255)
+    date_created = models.DateTimeField(auto_now_add=True)
+    likes_comment = models.ManyToManyField(User, related_name='likes_blog_comments', blank=True)
+    replay_comment = models.ForeignKey('self', null=True, related_name='replies_comment', on_delete=models.CASCADE)
+
+    def total_likes(self):
+        return self.likes_comment.count()
+
+    def __str__(self):
+        return f"{self.post.title} {self.name_author} {self.id}"
+
+    def get_absolute_url(self):
+        return reverse('blog:post-detail', kwargs={'pk': self.pk})

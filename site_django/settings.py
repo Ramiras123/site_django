@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'discussions',
     'forms_app',
     'model_form',
-    
+    'users.apps.UsersConfig',
+    'notification',
     # need imports
     'django_cleanup.apps.CleanupConfig',  # automatically deletes files for FileField, ImageField and subclasses
     'crispy_forms',  # для форм
