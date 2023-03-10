@@ -28,7 +28,7 @@
                                 <div class="d-flex">
                                     <p class="text-primary mb-0">{{ post.date_created|date:"F d Y" }}</p>
                                     <div style="margin-right: -60px;margin-left: 13px;">
-                                        <p class="fw-bold mb-0"><a href="#">link posts</a></p>
+                                        <p class="fw-bold mb-0"><a href="{% url 'blog:post-detail' post.pk post.slug %}">link posts</a></p>
                                     </div>
                                 </div>
                             </div>

@@ -52,7 +52,10 @@ INSTALLED_APPS = [
     # my apps
     'blog.apps.BlogConfig',
     'discussions',
-
+    'forms_app',
+    'model_form',
+    'users.apps.UsersConfig',
+    'notification',
     # need imports
     'django_cleanup.apps.CleanupConfig',  # automatically deletes files for FileField, ImageField and subclasses
     'crispy_forms',  # для форм
@@ -228,7 +231,10 @@ CHANNEL_LAYERS = {
 '''
 
 #email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = True
@@ -248,3 +254,6 @@ MESSAGE_TAGS = {
 
 # в производстве убрать
 os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
+
+LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'index-home'
