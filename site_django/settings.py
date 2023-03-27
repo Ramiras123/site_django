@@ -82,7 +82,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # django_debug_toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # django_debug_toolbar
+    'middleware.middlewares.AjaxMiddleware',
 ]
 
 ROOT_URLCONF = 'site_django.urls'
