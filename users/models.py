@@ -28,5 +28,15 @@ class Profile(models.Model):
 
 
 class Relationship(models.Model):
+    STATUS_CHOICES = (
+        ('send', 'send'),
+        ('accepted', 'accepted')
+    )
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_sender')
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_receiver')
+    status = models.CharField(max_length=8, choices=STATUS_CHOICES)
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.sender} -> {self.receiver} = {self.status}'
